@@ -12,8 +12,8 @@ func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
 
-func Perimeter(rectangle Rectangle) float64 {
-	return 2 * (rectangle.Width + rectangle.Height)
+func (r Rectangle) Perimeter() float64 {
+	return 2 * (r.Width + r.Height)
 }
 
 type Circle struct {
@@ -22,4 +22,27 @@ type Circle struct {
 
 func (c Circle) Area() float64 {
 	return c.Radius * c.Radius * math.Pi
+}
+
+func (c Circle) Perimeter() float64 {
+	return (2 * c.Radius) * math.Pi
+}
+
+type Triangle struct {
+	Base   float64
+	Height float64
+}
+
+func (t Triangle) Area() float64 {
+	return (t.Base * t.Height) / 2
+}
+
+func (t Triangle) Perimeter() float64 {
+	// ASSUMING AN EQUILATERAL TRIANGLE
+	// Pythagorean Theorem a^2 + b^2 = c^2
+	a := t.Base / 2
+	b := t.Height
+	cSquared := (a * a) + (b * b)
+	c := math.Sqrt(cSquared)
+	return t.Base + c + c
 }
